@@ -6,3 +6,12 @@ spring:
     username: guest
     password: guest
     port: 5672
+
+properties:
+  rabbitmq:
+    exchange-name: user.events.direct
+    routing-key-name: user.created
+    queue-name: notification.user-created
+
+server:
+  port: 8080
