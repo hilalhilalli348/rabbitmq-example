@@ -6,3 +6,24 @@ spring:
     username: guest
     password: guest
     port: 5672
+    listener:
+      simple:
+        acknowledge-mode: manual
+        prefetch: 1
+
+properties:
+  rabbitmq:
+    main-exchange-name: user.events.direct
+    dlq-exchange-name: dlq.user.events.direct
+    retry-exchange-name: retry.user.events.direct
+    main-routing-key-name: user.created
+    retry-routing-key-name: retry.user.created
+    dlq-routing-key-name: dlq.user.created
+    main-queue-name: notification.user-created
+    retry-queue-name: notification.user-created.retry
+    dlq-queue-name: notification.user-created.dlq
+    retry-ttl-ms: 5000
+    max-retry-count: 3
+
+server:
+  port: 8080
