@@ -1,8 +1,18 @@
 spring:
   application:
     name: rabbitmq-example
-  rabbitmq:
     host: localhost
     username: guest
     password: guest
     port: 5672
+  rabbitmq:
+    publisher-confirm-type: correlated
+
+properties:
+  rabbitmq:
+    exchange-name: user.events.direct
+    routing-key-name: user.created
+    queue-name: notification.user-created
+
+server:
+  port: 8080
